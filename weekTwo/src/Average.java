@@ -1,7 +1,7 @@
 public class Average {
     public static void main(String[] args) {
         int[] arr = {2, 4, 6, 8 ,  10, 2, 12, 14 , 16  , 18 };
-//        int[] arr = {10, 20, 30, 40, 50};
+//        int[] a rr = {10, 20, 30, 40, 50};
         double theSum = findSum(arr);
         double avg = findAverage(theSum , arr.length);
         printAverage(avg,theSum);
