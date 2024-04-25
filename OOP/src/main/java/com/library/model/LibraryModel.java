@@ -5,6 +5,8 @@ public class LibraryModel {
     private String title ;
     private String author;
     private Integer publicationYear ;
+    private Boolean available;
+
 
     public LibraryModel() {
     }
@@ -52,6 +54,14 @@ public class LibraryModel {
         this.publicationYear = publicationYear;
     }
 
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+
     public void displayInfo() {
         System.out.println("Id: "+ id);
         System.out.println("Title: " + title);
@@ -67,4 +77,5 @@ public class LibraryModel {
                 ", author='" + author + '\'' +
                 ", publicationYear=" + publicationYear ;
     }
+
 }

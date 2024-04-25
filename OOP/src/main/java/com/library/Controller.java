@@ -53,18 +53,22 @@ public class Controller {
 
     private static void display() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("List the books:     1");
-        System.out.println("List the dvds:      2");
-        System.out.println("List the magazines: 3");
-        System.out.println("add book:           4");
-        System.out.println("add dvd:            5");
-        System.out.println("add magazines:      6");
-        System.out.println("update book:        7");
-        System.out.println("update dvd:         8");
-        System.out.println("update magazines:   9");
-        System.out.println("delete book:        10");
-        System.out.println("delete dvd:         11");
-        System.out.println("delete magazines:   12");
+        System.out.println("List the books:                                              1");
+        System.out.println("List the dvds:                                               2");
+        System.out.println("List the magazines:                                          3");
+        System.out.println("add book:                                                    4");
+        System.out.println("add dvd:                                                     5");
+        System.out.println("add magazines:                                               6");
+        System.out.println("update book:                                                 7");
+        System.out.println("update dvd:                                                  8");
+        System.out.println("update magazines:                                            9");
+        System.out.println("delete book:                                                 10");
+        System.out.println("delete dvd:                                                  11");
+        System.out.println("delete magazines:                                            12");
+        System.out.println("search for the book it is available or not by title :        13");
+        System.out.println("search for the book it is available or not by title :        14");
+        System.out.println("search for the book it is available or not by title :        15");
+
         System.out.println("Enter the number :");
         Integer dis = sc.nextInt();
         String wait;
@@ -100,16 +104,19 @@ public class Controller {
             case 4:
 
                 Book book = enterTheBook();
+                bookService.add(book);
                 System.out.println("the mission is done ");
                 wait = sc.next();
                 break;
             case 5:
                 DVD dvd = enterTheDVD();
+                dvdService.add(dvd);
                 System.out.println("the mission is done ");
                 wait = sc.next();
                 break;
             case 6:
                 Magazine magazine = enterTheMagazine();
+                magazinesService.add(magazine);
                 System.out.println("the mission is done ");
                 wait = sc.next();
                 break;
@@ -148,7 +155,45 @@ public class Controller {
                 int id = sc.nextInt();
                 Magazine meg = magazinesService.readById(id);
                 magazinesService.delete(meg);
-
+                break;
+            case 13:
+                System.out.println("enter the name of the book you want to check if available or not : ");
+                String nameOfTheBook = sc.next();
+                Boolean bookaAvailable = bookService.isAvailable(nameOfTheBook);
+                if(bookaAvailable)
+                {
+                    System.out.println("the Book is available in the library");
+                }
+                else
+                {
+                    System.out.println("sorry, next time we will try to catch you needs");
+                }
+                break;
+            case 14:
+                System.out.println("enter the name of the book you want to check if available or not : ");
+                String nameOfTheDvD = sc.next();
+                Boolean dvdAvailable = dvdService.isAvailable(nameOfTheDvD);
+                if(dvdAvailable)
+                {
+                    System.out.println("the DVD is available in the library");
+                }
+                else
+                {
+                    System.out.println("sorry, next time we will try to catch you needs");
+                }
+                break;
+            case 15:
+                System.out.println("enter the name of the magazine you want to check if available or not : ");
+                String nameOfTheMagazine = sc.next();
+                Boolean magazineAvailable = magazinesService.isAvailable(nameOfTheMagazine);
+                if(magazineAvailable)
+                {
+                    System.out.println("the Magazine is available in the library");
+                }
+                else
+                {
+                    System.out.println("sorry, next time we will try to catch you needs");
+                }
                 break;
             default:
                 System.out.println("Invalid choice!");

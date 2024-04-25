@@ -5,5 +5,5 @@ public interface LabraryService<T> {
     Boolean update(T entity );
     T readById(Integer id);
     void delete (T entity);
-
+     Boolean isAvailable(String name );
 }

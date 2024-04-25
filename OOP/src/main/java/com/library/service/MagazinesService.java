@@ -1,5 +1,6 @@
 package com.library.service;
 
+import com.library.model.Book;
 import com.library.model.Magazine;
 
 import java.util.ArrayList;
@@ -17,17 +18,22 @@ public class MagazinesService implements LabraryService<Magazine> {
 
     @Override
     public Boolean update(Magazine entity) {
-        Magazine magazine = new Magazine();
-        magazine.setId(0);
+        Boolean isValid = false;
         for (Magazine tmp: magazines)
         {
             if(tmp.getId().equals(entity.getId()))
             {
-                magazine = entity ;
+//                String title, String author, int publicationYear, String organizations
+                isValid = true;
+//                tmp = entity ;
+                tmp.setTitle(entity.getTitle());
+                tmp.setAuthor(entity.getAuthor());
+                tmp.setPublicationYear(entity.getPublicationYear());
+                tmp.setOrganizations(entity.getOrganizations());
                 break;
             }
         }
-        return (magazine.getId() == 0) ? false : true;
+        return isValid;
     }
 
     @Override
@@ -54,6 +60,17 @@ public class MagazinesService implements LabraryService<Magazine> {
             System.out.println("deleting complete ");
         else
             System.out.println("idk something wrong or u enter wrong id");
+    }
+    @Override
+    public Boolean isAvailable(String name) {
+        for(Magazine magazine : magazines )
+        {
+            if(magazine.getTitle().equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

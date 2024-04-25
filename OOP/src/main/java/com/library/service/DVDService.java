@@ -2,6 +2,7 @@ package com.library.service;
 
 
 
+import com.library.model.Book;
 import com.library.model.DVD;
 
 import java.util.ArrayList;
@@ -19,17 +20,25 @@ public class DVDService implements LabraryService<DVD>{
 
     @Override
     public Boolean update(DVD entity) {
-        DVD dvd = new DVD();
-        dvd.setId(0);
+
+        Boolean isValid = false;
+
         for (DVD tmp: dvds)
         {
+
             if(tmp.getId().equals(entity.getId()))
             {
-                dvd = entity ;
+//                String title, String author, int publicationYear, String pand
+//                tmp = entity ;
+                tmp.setTitle(entity.getTitle());
+                tmp.setAuthor(entity.getAuthor());
+                tmp.setPublicationYear(entity.getPublicationYear());
+                tmp.setPand(entity.getPand());
+                isValid = true;
                 break;
             }
         }
-        return (dvd.getId() == 0) ? false : true;
+        return isValid;
     }
 
     @Override
@@ -56,5 +65,16 @@ public class DVDService implements LabraryService<DVD>{
             System.out.println("deleting complete ");
         else
             System.out.println("idk something wrong or u enter wrong id");
+    }
+    @Override
+    public Boolean isAvailable(String name) {
+        for(DVD dvd : dvds )
+        {
+            if(dvd.getTitle().equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

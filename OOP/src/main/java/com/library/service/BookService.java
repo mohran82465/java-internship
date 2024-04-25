@@ -18,17 +18,23 @@ public class BookService implements LabraryService<Book>{
 
     @Override
     public Boolean update(Book entity) {
-        Book book = new Book();
-        book.setId(0);
+        Boolean isValid = false;
+
         for (Book tmp: books)
         {
             if(tmp.getId().equals(entity.getId()))
             {
-                book = entity ;
+//                int id, String title, String author, int publicationYear, String isbn, String publisher
+                tmp.setTitle(entity.getTitle());
+                tmp.setAuthor(entity.getAuthor());
+                tmp.setPublicationYear(entity.getPublicationYear());
+                tmp.setIsbn(entity.getIsbn());
+                tmp.setPublisher(entity.getPublisher());
+                isValid = true;
                 break;
             }
         }
-        return (book.getId() == 0) ? false : true;
+        return isValid;
     }
 
     @Override
@@ -55,5 +61,17 @@ public class BookService implements LabraryService<Book>{
             System.out.println("deleting complete ");
         else
             System.out.println("idk something wrong or u enter wrong id");
+    }
+
+    @Override
+    public Boolean isAvailable(String name) {
+        for(Book book : books )
+        {
+            if(book.getTitle().equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
